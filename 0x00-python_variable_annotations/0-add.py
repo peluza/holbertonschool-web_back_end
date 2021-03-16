@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """add duntion"""
 
 def add(a: float, b:float) -> float:
