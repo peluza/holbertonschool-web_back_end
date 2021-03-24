@@ -27,13 +27,10 @@ class LRUCache(BaseCaching):
             self.cache_data[key] = item
             if key not in self.keys:
                 self.keys.append(key)
-            else:
-                self.keys.remove(key)
-                self.keys.append(key)
             if len(self.keys) > BaseCaching.MAX_ITEMS:
-                leastKeyDel = self.keys.pop(0)
-                del self.cache_data[leastKeyDel]
-                print("DISCARD: {}".format(leastKeyDel))
+                discard = self.keys.pop(0)
+                del self.cache_data[discard]
+                print('DISCARD: {:s}'.format(discard))
 
     def get(self, key):
         """get
