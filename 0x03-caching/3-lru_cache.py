@@ -10,7 +10,6 @@ class LRUCache(BaseCaching):
     Args:
         BaseCaching (obj):
     """
-
     def __init__(self):
         """__init__"""
         super().__init__()
