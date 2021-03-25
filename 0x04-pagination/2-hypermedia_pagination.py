@@ -69,4 +69,3 @@ class Server:
             'total_pages': total_pages
         }
         return all_data
-
