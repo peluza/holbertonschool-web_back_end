@@ -12,15 +12,7 @@ class Auth():
             self,
             path: str,
             excluded_paths: typing.List[str]) -> bool:
-        """require_auth
-
-        Args:
-            path (str):
-            excluded_paths (typing.List[str]):
-
-        Returns:
-            bool:
-        """
+        """require_auth"""
         if not path:
             return True
         if not excluded_paths or len(excluded_paths) == 0:
@@ -38,14 +30,7 @@ class Auth():
                     return True
 
     def authorization_header(self, request=None) -> str:
-        """authorization_header
-
-        Args:
-            request ([type], optional): Defaults to None.
-
-        Returns:
-            str:
-        """
+        """authorization_header"""
         if request is None:
             return None
         auth_header = request.headers.get('Authorization')
@@ -55,9 +40,5 @@ class Auth():
             return auth_header
 
     def current_user(self, request=None) -> typing.TypeVar('User'):
-        """current_user
-
-        Returns:
-            None: None
-        """
+        """current_user"""
         return None
