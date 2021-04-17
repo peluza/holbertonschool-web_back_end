@@ -5,6 +5,7 @@ auth.py
 
 from flask import request
 import typing
+from os import getenv
 
 
 class Auth():
@@ -42,3 +43,18 @@ class Auth():
     def current_user(self, request=None) -> typing.TypeVar('User'):
         """method current user"""
         return None
+
+    def session_cookie(self, request=None):
+        """session_cookie
+
+        Args:
+            request (str, optional): Defaults to None.
+
+        Returns:
+            str: value of the cookie
+        """
+        if request is None:
+            return None
+        Name = getenv("SESSION_NAME")
+        CookiesV = request.cookies.get(Name)
+        return CookiesV
