@@ -59,7 +59,9 @@ def forbidden(error) -> str:
 
 @app.before_request
 def before_request():
-    """before_request
+    """before_reques
+
+    request current user
     """
     path_list = [
         "/api/v1/status/",
