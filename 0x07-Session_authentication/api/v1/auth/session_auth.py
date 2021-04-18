@@ -5,6 +5,7 @@ from api.v1.auth.auth import Auth
 from uuid import uuid4
 from models.user import User
 
+
 class SessionAuth(Auth):
     """SessionAuth"""
 
@@ -21,7 +22,7 @@ class SessionAuth(Auth):
         """
         if user_id is None:
             return None
-        if type(user_id) is not str:
+        if not isinstance(user_id, str):
             return None
         session_id = str(uuid4())
         self.user_id_by_session_id[session_id] = user_id
@@ -38,7 +39,7 @@ class SessionAuth(Auth):
         """
         if session_id is None:
             return None
-        if type(session_id) is not str:
+        if not isinstance(session_id, str):
             return None
         user_id = self.user_id_by_session_id.get(session_id)
         return user_id
@@ -55,7 +56,6 @@ class SessionAuth(Auth):
         session_id = self.session_cookie(request)
         user_id = self.user_id_for_session_id(session_id)
         return User.get(user_id)
-
 
     def destroy_session(self, request=None):
         """destroy_session

@@ -6,6 +6,7 @@ from api.v1.views import app_views
 from models.user import User
 import os
 
+
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login():
     """login
@@ -39,7 +40,10 @@ def login():
     result.set_cookie(Name, session_id)
     return result
 
-@app_views.route('/auth_session/logout', methods=['DELETE'],strict_slashes=False)
+
+@app_views.route('/auth_session/logout',
+                 methods=['DELETE'],
+                 strict_slashes=False)
 def logout():
     """logout
 
