@@ -82,3 +82,18 @@ class Auth:
         except Exception:
             return False
 
+    def create_session(self, email:str) -> str:
+        """create_session
+
+        Args:
+            email (str):
+
+        Returns:
+            str: new id
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+        except Exception:
+            return None
+        self._db.update_user(user.id, session_id=_generate_uuid())
+        return user.session_id
