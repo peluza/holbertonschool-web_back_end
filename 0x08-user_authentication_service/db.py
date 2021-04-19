@@ -73,7 +73,7 @@ class DB:
             ValueError:
 
         Returns:
-            [type]:
+            None:
         """
         user = self.findict_users_by(id=user_id)
         for k, v in kwargs.items():
