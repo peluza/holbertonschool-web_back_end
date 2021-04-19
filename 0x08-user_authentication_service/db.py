@@ -75,7 +75,7 @@ class DB:
         Returns:
             None:
         """
-        user = self.findict_users_by(id=user_id)
+        user = self.find_user_by(id=user_id)
         for k, v in kwargs.items():
             dict_users = user.__dict__
             if k in dict_users:
