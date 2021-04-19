@@ -32,8 +32,8 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def addict_users(self, email: str, hashed_password: str) -> User:
-        """addict_users
+    def add_user(self, email: str, hashed_password: str) -> User:
+        """add_user
 
         Args:
             email (str):
@@ -47,8 +47,8 @@ class DB:
         self._session.commit()
         return user
 
-    def findict_users_by(self, **kwargs) -> User:
-        """findict_users_by
+    def find_user_by(self, **kwargs) -> User:
+        """find_user_by
 
         Raises:
             NoResultFound:
