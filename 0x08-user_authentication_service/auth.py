@@ -30,7 +30,7 @@ class Auth:
     def __init__(self):
         self._db = DB()
 
-    def register_user(self, email:str , password:str) -> str:
+    def register_user(self, email: str, password: str) -> str:
         """register_user
 
         Args:
@@ -49,5 +49,6 @@ class Auth:
                 raise ValueError("User {} already exists".format(email))
         except NoResultFound:
             hash_password = _hash_password(password)
-            user = self._db.add_user(email=email, hashed_password=hash_password)
+            user = self._db.add_user(
+                email=email, hashed_password=hash_password)
             return user
