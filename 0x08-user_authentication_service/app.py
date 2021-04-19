@@ -20,6 +20,11 @@ def message() -> str:
 
 @app.route('/users', methods=['POST'])
 def users() -> str:
+    """users
+
+    Returns:
+        str: message
+    """
     email = request.form.get("email")
     password = request.form.get("password")
     try:
