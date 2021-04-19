@@ -32,8 +32,8 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def add_user(self, email: str, hashed_password: str) -> User:
-        """add_user
+    def addict_users(self, email: str, hashed_password: str) -> User:
+        """addict_users
 
         Args:
             email (str):
@@ -47,8 +47,8 @@ class DB:
         self._session.commit()
         return user
 
-    def find_user_by(self, **kwargs) -> User:
-        """find_user_by
+    def findict_users_by(self, **kwargs) -> User:
+        """findict_users_by
 
         Raises:
             NoResultFound:
@@ -62,3 +62,25 @@ class DB:
             raise NoResultFound
         else:
             return user
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """update_user
+
+        Args:
+            user_id (int):
+
+        Raises:
+            ValueError:
+
+        Returns:
+            [type]:
+        """
+        user = self.findict_users_by(id=user_id)
+        for k, v in kwargs.items():
+            dict_users = user.__dict__
+            if k in dict_users:
+                setattr(user, k, v)
+            else:
+                raise ValueError
+        self._session.commit()
+        return None
