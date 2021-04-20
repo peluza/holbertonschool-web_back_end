@@ -64,7 +64,7 @@ class Auth:
                 email=email, hashed_password=hash_password)
             return user
 
-    def valid_login(self, email: str, password:str) -> bool:
+    def valid_login(self, email: str, password: str) -> bool:
         """valid_login
 
         Args:
@@ -82,7 +82,7 @@ class Auth:
         except Exception:
             return False
 
-    def create_session(self, email:str) -> str:
+    def create_session(self, email: str) -> str:
         """create_session
 
         Args:
@@ -98,7 +98,7 @@ class Auth:
         self._db.update_user(user.id, session_id=_generate_uuid())
         return user.session_id
 
-    def get_user_from_session_id(self, session_id:str) -> str:
+    def get_user_from_session_id(self, session_id: str) -> str:
         """get_user_from_session_id
 
         Args:
@@ -129,7 +129,7 @@ class Auth:
         else:
             self._db.update_user(user_id, session_id=None)
 
-    def get_reset_password_token(self, email:str) -> str:
+    def get_reset_password_token(self, email: str) -> str:
         """get_reset_password_token
 
         Args:
@@ -164,7 +164,10 @@ class Auth:
         try:
             user = self._db.find_user_by(reset_token=reset_token)
             pwd = _hash_password(password)
-            self._db.update_user(user.id,hashed_password=pwd, reset_token=None)
+            self._db.update_user(
+                user.id,
+                hashed_password=pwd,
+                reset_token=None)
             return None
         except Exception:
             raise ValueError
