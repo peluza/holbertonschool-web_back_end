@@ -18,7 +18,7 @@ def message() -> str:
     return jsonify({"message": "Bienvenue"})
 
 
-@app.route('/users', methods=['POST'])
+@app.route('/users', methods=['POST'], strict_slashes=False)
 def users() -> str:
     """users
 
@@ -35,7 +35,7 @@ def users() -> str:
         return jsonify({"message": "email already registered"}), 400
 
 
-@app.route('/sessions', methods=['POST'])
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login() -> str:
     """login
 
@@ -52,7 +52,7 @@ def login() -> str:
         res.set_cookie("session_id", session_id)
         return res
 
-@app.route('/sessions', methods=['DELETE'])
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
 def logout():
     """logout
 
@@ -66,6 +66,16 @@ def logout():
         return "/"
     else:
         abort(403)
+
+@app.route('/profile', methods=['GET'], strict_slashes=False)
+def profile() -> str:
+    session_id = request.cookies.get("session_id")
+    user = AUTH.get_user_from_session_id(session_id)
+    if user:
+        return jsonify({"email": "<user email>"})
+    else:
+        abort(403)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
