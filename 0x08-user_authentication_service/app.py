@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """app"""
 
 from flask import Flask, jsonify, request, abort
