@@ -64,21 +64,11 @@ class DB:
             return user
 
     def update_user(self, user_id: int, **kwargs) -> None:
-        """update_user
-
-        Args:
-            user_id (int):
-
-        Raises:
-            ValueError:
-
-        Returns:
-            None:
-        """
+        """update_user"""
         user = self.find_user_by(id=user_id)
         for k, v in kwargs.items():
-            dict_users = user.__dict__
-            if k in dict_users:
+            d_user = user.__dict__
+            if k in d_user:
                 setattr(user, k, v)
             else:
                 raise ValueError
