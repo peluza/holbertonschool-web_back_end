@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """auth"""
-
 import bcrypt
 from db import DB
 from sqlalchemy.orm.exc import NoResultFound
