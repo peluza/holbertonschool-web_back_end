@@ -2,12 +2,12 @@
 """exercise"""
 
 import redis
-import typing
+from typing import Union, Optional, Callable
 from uuid import uuid4
 from functools import wraps
 
 
-def count_calls(method: typing.Callable) -> typing.Callable:
+def count_calls(method: Callable) -> Callable:
     """count_calls
 
     Args:
@@ -25,7 +25,7 @@ def count_calls(method: typing.Callable) -> typing.Callable:
     return wrapper
 
 
-def call_history(method: typing.Callable) -> typing.Callable:
+def call_history(method: Callable) -> Callable:
     """call_history
 
     Args:
@@ -46,7 +46,7 @@ def call_history(method: typing.Callable) -> typing.Callable:
     return wrapper
 
 
-def replay(fn: typing.Callable):
+def replay(fn: Callable):
     """replay
 
     Args:
@@ -89,7 +89,7 @@ class Cache:
 
     @call_history
     @count_calls
-    def store(self, data: typing.Union[str, bytes, int, float]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """store
 
         Args:
@@ -104,10 +104,7 @@ class Cache:
 
     def get(self,
             key: str,
-            fn: typing.Optional[callable] = None) -> typing.Union[str,
-                                                                  bytes,
-                                                                  int,
-                                                                  float]:
+            fn: Optional[callable] = None) -> Union[str, bytes, int, float]:
         """get
 
         Args:
