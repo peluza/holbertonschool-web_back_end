@@ -1,11 +1,11 @@
 #!/usr/bin/node
 const fs = require('fs');
 
-function countStudents(path) {
+async function countStudents(path) {
   let content;
 
   try {
-    content = fs.readFileSync(path);
+    content = await fs.readFileSync(path);
   } catch (err) {
     throw new Error('Cannot load the database');
   }
