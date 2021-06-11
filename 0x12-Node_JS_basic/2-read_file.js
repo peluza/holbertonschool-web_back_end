@@ -5,7 +5,7 @@ function countStudents(path) {
   let content;
 
   try {
-    content = await fs.readFileSync(path);
+    content = fs.readFileSync(path);
   } catch (err) {
     throw new Error('Cannot load the database');
   }
